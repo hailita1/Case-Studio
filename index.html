@@ -9,6 +9,10 @@
             position: absolute;
             top: 120px;
             left: 1300px;
+            border: 1px solid;
+            background-color: bisque;
+            padding: 3px;
+            height: 140px;
         }
 
         p {
@@ -20,6 +24,16 @@
             color: blue;
             text-align: center;
         }
+
+        img {
+            width: 600px;
+            height: 800px;
+        }
+
+        canvas {
+            position: absolute;
+            left: 658px;
+        }
     </style>
 </head>
 <body>
@@ -27,55 +41,12 @@
     <p>Điểm số</p>
     <p id="ketqua"></p>
 </div>
-<div>
-    <button style="background-color: antiquewhite" value="Tăng tốc" onclick="tangSpeed()">Tăng Tốc</button>
-</div>
 <center>
     <h1>Trò chơi</h1>
+    <img src="anh.jpg">
     <canvas id="canvas" width="600" height="800" style="border: 1px solid gray;"></canvas>
 </center>
 <script src="js.js">
-</script>
-<script>
-    let ball = new Ball();
-    let bar = new Bar();
-    let cout = 0;
-
-    function moveBar(event) {
-        switch (event.keyCode) {
-            case 37: {
-                bar.moveLeft();
-                break;
-            }
-            case 39: {
-                bar.moveRight();
-                break;
-            }
-        }
-    }
-
-    function run() {
-        window.addEventListener('keydown', moveBar);
-    }
-
-    function draw() {
-        CTX.clearRect(0, 0, MAPWIDTH, MAPHEIGHT);
-        ball.draw(CTX);
-        bar.drawBar(CTX);
-    }
-
-    function update() {
-        ball.moveBall();
-        ball.checkCollision(bar);
-        draw();
-    }
-
-    window.onload = function () {
-        let interval = 8;
-        run();
-        ball = new Ball();
-        setInterval("update()", interval);
-    };
 </script>
 </body>
 </html>

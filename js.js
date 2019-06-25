@@ -19,7 +19,7 @@ let Ball = function () {
 
     this.draw = function (ctx) {
         ctx.beginPath();
-        ctx.fillStyle = "#f2db0f";
+        ctx.fillStyle = "#eff2f2";
         ctx.arc(this.cx, this.cy, this.radius, 0, Math.PI * 2, true);
         ctx.closePath();
         ctx.fill();
@@ -57,9 +57,9 @@ let Ball = function () {
         }
     };
 
-    function tangSpeed() {
-        this.SPEED = this.SPEED + 1;
-    }
+    // function tangSpeed() {
+    //     this.SPEED = this.SPEED + 1;
+    // }
 };
 let Bar = function () {
     this.x = MAPWIDTH / 2 + BAR_DEFAULT_WIDTH;
@@ -67,7 +67,7 @@ let Bar = function () {
     this.width = BAR_DEFAULT_WIDTH;
     this.height = BAR_DEFAULT_HEIGHT;
     this.drawBar = function (ctx) {
-        ctx.fillStyle = "#a8aff2";
+        ctx.fillStyle = "#12f20d";
         ctx.fillRect(this.x, this.y, this.width, this.height);
     };
     this.moveRight = function () {
@@ -89,4 +89,43 @@ let Bar = function () {
     this.getY = function () {
         return this.y;
     }
+}
+let ball = new Ball();
+let bar = new Bar();
+let cout = 0;
+
+function moveBar(event) {
+    switch (event.keyCode) {
+        case 37: {
+            bar.moveLeft();
+            break;
+        }
+        case 39: {
+            bar.moveRight();
+            break;
+        }
+    }
+}
+
+function run() {
+    window.addEventListener('keydown', moveBar);
+}
+
+function draw() {
+    CTX.clearRect(0, 0, MAPWIDTH, MAPHEIGHT);
+    ball.draw(CTX);
+    bar.drawBar(CTX);
+}
+
+function update() {
+    ball.moveBall();
+    ball.checkCollision(bar);
+    draw();
+}
+
+window.onload = function () {
+    let interval = 8;
+    run();
+    ball = new Ball();
+    setInterval("update()", interval);
 };
