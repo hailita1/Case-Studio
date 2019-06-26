@@ -7,7 +7,7 @@ const MAPHEIGHT = document.getElementById("canvas").offsetHeight;
 const CTX = document.getElementById("canvas").getContext("2d");
 
 const BAR_DEFAULT_WIDTH = 160;
-const BAR_DEFAULT_HEIGHT = 15;
+const BAR_DEFAULT_HEIGHT = 5;
 const BAR_DEFAULT_SPEED = 25;
 
 let Ball = function () {
@@ -50,16 +50,12 @@ let Ball = function () {
             }
         }
         if (isBot) {
-            confirm("Mời chơi lại, bạn được " + cout + " điểm");
+            confirm("Mời chơi lại, Bạn được " + cout + " điểm");
             this.cx = BALL_DEFAULT_POSITION_X;
             this.cy = BALL_DEFAULT_POSITION_Y;
             cout = 0;
         }
     };
-
-    // function tangSpeed() {
-    //     this.SPEED = this.SPEED + 1;
-    // }
 };
 let Bar = function () {
     this.x = MAPWIDTH / 2 + BAR_DEFAULT_WIDTH;
@@ -89,7 +85,7 @@ let Bar = function () {
     this.getY = function () {
         return this.y;
     }
-}
+};
 let ball = new Ball();
 let bar = new Bar();
 let cout = 0;
